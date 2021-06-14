@@ -17,7 +17,6 @@ function mat = genRandSigMat(n)
             mat(i, j) = genSig();
         end
     end
-    mat(1, 1) = 1; // 一行一列要素が負 => 非正定確定 → なので最初から正に矯正
 endfunction
 
 function num = genShf()
@@ -39,15 +38,11 @@ function mat = genShfMat(n)
             mat(i, j) = genShf();
         end
     end
-    //mat(1, 1) = 1000000 * mat(1, 1); // 一行一列の要素が大きいとx1に効いてる
-    mat(1, 1) = 99999999; // これが効く
-
 endfunction
 
 function mat = genRandMat(n)
     mat = round(genShfMat(n) .* rand(n, n)); // 整数行列
     //mat = genShfMat(n) .* rand(n, n); // 少数行列
-                                        // どちらでも大して変わらないと思われる
 endfunction
 
 function mat = genSymMat(n)
